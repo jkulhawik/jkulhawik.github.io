@@ -23,7 +23,7 @@ p {
 .clue{
 	font-size: 36px;
 	width: 80vw;
-	margin:50px 10vw;
+	margin:60px 10vw 50px 10vw;
 	font-weight: 500;
 }
 
@@ -34,43 +34,52 @@ input{
 	border:none;
 	font-size: 20px;
 	display: inline-block;
-
+	border-radius: 6px 0px 0px 6px;
+	outline: none;
 }
 
-button{
+a{
+	text-decoration: none;
+}
+
+#btn, #btn2, #btn3{
 	height: 50px;
 	width: 50px;
 	margin: 20px 20px 20px -6px;
-	border:none;
-	background-color: #444;
-
-
+	border-radius: 0px 6px 6px 0px;
 }
 
-.gradA{
+button{
+	border:none;
+	background-color: #444;
+	outline: none;
+}
+
+button:hover{
+	background-color: #333;
+}
+
+.firstQ{
 	background: linear-gradient(#4fb0b9, #4fb997);
 	height: 100vh;
 }
 
-.gradB{
+.secondQ{
 	background: linear-gradient(#7a65ac, #4775ad);
 	height: 100vh;
+	display: none;
 }
 
-.gradC{
+.thirdQ{
 	background: linear-gradient(#c54e4d, #e3c255);
 	height: 100vh;
+	display: none;
 }
 
-.question {
-	margin: 100px 0 0 0;
-	height: 20px;
-}
 
 .inputarea{
 	display: flex;
 	justify-content: center;
-	width: 480px;
 	margin-top: 0;
 }
 
@@ -102,6 +111,21 @@ button{
 	height: 30px;
 }
 
+.next{
+	display: none;
+	justify-content: center;
+	margin-top: 50px;
+	height: 40px;
+	width: 20vw;
+	padding: 8px;
+	border-radius: 6px;
+	outline: none;
+}
+
+#next2{
+	
+}
+
 .congrats{
 	display: none;
 }
@@ -114,7 +138,7 @@ button{
 	display: none;
 }
 
-@media (max-width:500px){
+/*@media (max-width:500px){
 			input{
 				width: 80vw;
 			}
@@ -122,3 +146,4 @@ button{
 				width: calc(90vw + 50px);
 			}
 		}
+*/
