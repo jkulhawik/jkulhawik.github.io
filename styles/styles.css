@@ -12,8 +12,6 @@ body{
 	flex-wrap: wrap;
 }
 
-
-
 p {
 	color: #fff;
 	font-family: 'Raleway', sans-serif;
@@ -79,6 +77,12 @@ button{
 .shake{
 	animation: shake .8s both;
 	transform: translate3d(0,0,0);
+}
+
+.next{
+	display: block;
+	height: 50px;
+	width: 200px;
 }
 
 @keyframes shake {

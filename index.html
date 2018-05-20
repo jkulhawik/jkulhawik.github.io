@@ -3,44 +3,84 @@
 <head>
 	<meta charset="UTF-8">
 	<style type="text/css"></style>
-	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="stylesheet" href="styles/styles_multi.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:300,500" rel="stylesheet">
 	<title>What can you bring through the green glass door?</title>
-<style type="text/css">
-	.show{
-		display: block;
-	}
-	.hide{
-		display: none;
-	}
-</style>
 
 </head>
 
-<body class="gradA">
-	<div class="question">
-		<p class="clue">I'm going to bring an apple, but not a banana.</p>
-		<p class="response"></p>
-		<p class="original">What will you bring?</p>
-		<p class="congrats">Sounds good! You can bring that.</p>
-		<p class="apple">Sorry, I'm already bringing that.</p>
-		<p class="nope">Sorry, you can't bring that.</p>
-	</div>
-	<div class="inputarea">
-		<input id="password" type="text" name="">
-		<button id="btn"><img src="images/arrow.png" class="arrow"></button>
-	</div>
+<body>
+	<section class="firstQ">
+		<div class="question">
+			<p class="clue">I'm going to bring an apple, but not a banana.</p>
+			<p class="original">What will you bring?</p>
+			<p class="response"></p>
+		</div>
+		<div class="inputarea">
+			<input id="password1" type="text" name="">
+			<button id="btn"><img src="images/arrow.png" class="arrow"></button>
+		</div>
+		<div class="inputarea">	
+			<a href="#secondQ"><button class="next" id="next1"><p>NEXT</p></button></a>
+		</div>	
+	</section>
+
+	<!-- section2-->
+
+	<section class="secondQ" id="secondQ">
+		<div class="question">
+			<p class="clue">I'm going to bring a zipper but not a button</p>
+			<p class="original2">What will you bring?</p>
+			<p class="response2"></p>
+		</div>
+		<div id="inputarea2" class="inputarea">
+			<input id="password2" type="text" name="">
+			<button id="btn2"><img src="images/arrow.png" class="arrow"></button>	
+		</div>	
+		<div class="inputarea">	
+			<a href="#thirdQ"><button class="next" id="next2"><p>NEXT</p></button></a>
+		</div>
+	</section>
+
+	<!-- section3-->
+
+	<section class="thirdQ" id="thirdQ">
+		<div class="question">
+			<p class="clue">I'm going to bring an umbrella, but not a hat.</p>
+			<p class="original3">What will you bring?</p>
+			<p class="response3"></p>
+		</div>
+		<div id="inputarea3" class="inputarea">
+			<input id="password3" type="text" name="">
+			<button id="btn3"><img src="images/arrow.png" class="arrow"></button>	
+		</div>	
+		<div class="inputarea">	
+			<button class="next" id="next3"><p>Woohoo!</p></button>
+		</div>
+	</section>
+
+<!-- modal box -->
+
+<div id="myModal" class="modal">
+
+  <div class="modal-content">
+ 	<span class="close">&times;</span>
+    <p class="modal-content">You are an excellent decoder!</p>
+  </div>
+
+</div>
+
 
 	<script
-	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  src="https://code.jquery.com/jquery-3.3.1.min.js" 
 	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	  crossorigin="anonymous">
-	</script>		
+	</script>
+
 	<script>
 
 	  $(document).ready(function() {
-
-	  	var textEntered = $("input").val();
+   		
 
 		//answer objects
 		var answers = {
@@ -80,61 +120,176 @@
 			"zz"
 		];
 
+		$("#next1").click(function() {
+			$("section.secondQ").show();
 
-		$("button").click(function() {
+		$('html, body').animate({
+    		scrollTop: $("section.secondQ").offset().top
+			}, 500);
+		});
+
+		$("#next2").click(function() {
+			$("section.thirdQ").show();	
+
+		$('html, body').animate({
+    		scrollTop: $("section.thirdQ").offset().top
+			}, 500);
+		});
+
+
+		$("#next3").click(function() {
+			$("#myModal").addClass("show");	
+		});
+
+		$(".close").click(function() {
+			$("#myModal").removeClass("show");	
+		});
+
+		$(".modal").click(function() {
+			$("#myModal").removeClass("show");	
+		});
+
+		$("#btn").click(function() {
+
 			var textEntered = $("input").val();
 				$("p.apple,p.congrats,p.nope,p.response").hide();
-			
-			/*if(textEntered == "apple"){
-				$("p.apple").fadeIn();
-				$("p.original").fadeOut();
-			}*/
+				$(".inputarea").removeClass("shake");
 
-			if(textEntered.includes("apple")){
-				$("p.original").fadeOut();
+			if(textEntered == ("apple")){
+				$("p.original").hide();
 				$("p.response").fadeIn();
 				$("p.response").html(answers.repeat);
 				$(".inputarea").addClass("shake");
 			}
 
 			if(textEntered == "" || textEntered == "nothing"){
-				$("p.original").fadeOut();
+				$("p.original").hide();
 				$("p.response").fadeIn();
 				$("p.response").html(answers.blank);
 				$(".inputarea").addClass("shake");
+			
 			}
 
-			for (var a of accepted){
-			if(textEntered.includes(a) && textEntered !=="apple" && textEntered !=="an apple" && textEntered !=="apples" && textEntered !=="nothing"){
+			var correct = false;
 
-				$("p.original").fadeOut();
+			for (var a of accepted){
+			if(textEntered.includes(a) & textEntered!=("apple"))
+			{
+
+				$("p.original").hide();
 				$("p.response").fadeIn();
 				$("p.response").html(answers.congrats + " " + textEntered + ".");
-			}/*else{
-				$("p.original").fadeOut();
+				$("#next1").fadeIn();
+				correct = true
+				break;
+			}}
+			
+			if (!correct & textEntered!=("nothing") & textEntered!=("") & textEntered!=("apple"))	
+			{
+
+				$("p.original").hide();
 				$("p.response").fadeIn();
 				$("p.response").html(answers.wrong + " " + textEntered + ".");
 				$(".inputarea").addClass("shake");
-			}*/}
+			}
 
-			/*if(textEntered == "pizza"){
-				//$("p.congrats").fadeIn();
-				$("p.original").fadeOut();
-				$("p.response").fadeIn();
-				$("p.response").html(answers.congrats);
-			}*/
+			
+		});
 
-			/*if(textEntered !== "apple" && textEntered!== "apples" && textEntered!=="" && textEntered!=="nothing"){
-				$("p.original").fadeOut();
-				$("p.response").fadeIn();
-				$("p.response").html(answers.wrong + " " + textEntered + ".");
-			}*/
+		//second section
+
+		//var textEntered2 = $("#password2").val();
+
+		$("#btn2").click(function() {
+
+			$(".inputarea").removeClass("shake");
+
+			var textEntered2 = $("#password2").val();
+
+			if(textEntered2 == ("zipper")){
+				$("p.original2").hide();
+				$("p.response2").fadeIn();
+				$("p.response2").html(answers.repeat);
+				$(".inputarea").addClass("shake");
+			}
+
+			if(textEntered2 == "" || textEntered2 == "nothing"){
+				$("p.original2").hide();
+				$("p.response2").fadeIn();
+				$("p.response2").html(answers.blank);
+				$(".inputarea").addClass("shake");
+			}
+
+			var correct = false;
+
+			if(textEntered2.includes("er") & textEntered2!=("zipper")){
+
+				$("p.original2").hide();
+				$("p.response2").fadeIn();
+				$("p.response2").html(answers.congrats + " " + textEntered2 + ".");
+				$("#next2").fadeIn();
+				correct = true;
+			}
+			
+			if (!correct & textEntered2!=("nothing") & textEntered2!=("") & textEntered2!=("zipper"))
+			{
+				$("p.original2").hide();
+				$("p.response2").fadeIn();
+				$("p.response2").html(answers.wrong + " " + textEntered2 + ".");
+				$(".inputarea").addClass("shake");
+			}
+
+			
+		});
+
+		//third section
+
+		//var textEntered3 = $("#password3").val();
+
+		$("#btn3").click(function() {
+
+			var textEntered3 = $("#password3").val();
+				$(".inputarea").removeClass("shake");
+
+			if(textEntered3 == ("umbrella")){
+				$("p.original3").hide();
+				$("p.response3").fadeIn();
+				$("p.response3").html(answers.repeat);
+				$(".inputarea").addClass("shake");
+			}
+
+			if(textEntered3 == "" || textEntered3 == "nothing"){
+				$("p.original3").hide();
+				$("p.response3").fadeIn();
+				$("p.response3").html(answers.blank);
+				$(".inputarea").addClass("shake");
+			}
+
+			var correct = false;
+
+			if(textEntered3.includes("um") & textEntered3!=("umbrella")){
+
+				$("p.original3").hide();
+				$("p.response3").fadeIn();
+				$("p.response3").html(answers.congrats + " " + textEntered3 + ".");
+				$("#next3").fadeIn();
+				correct = true;
+			}
+			
+			if (!correct & textEntered3!=("nothing") & textEntered3!=("") & textEntered3!=("umbrella"))	
+			{
+				$("p.original3").hide();
+				$("p.response3").fadeIn();
+				$("p.response3").html(answers.wrong + " " + textEntered3 + ".");
+				$(".inputarea").addClass("shake");
+			}
+
 			
 		});
 
 
 		//This allows the Enter key to be used to click buttton
-		var input = $("#password");
+		var input = $("#password1");
 
 		input.on("keyup", function(event) {
 		  // Cancel the default action, if needed
@@ -145,10 +300,35 @@
 		    $("#btn").click();
 			}
 		});
-		
 
+		//This allows the Enter key to be used to click buttton
+		var input = $("#password2");
+
+		input.on("keyup", function(event) {
+		  // Cancel the default action, if needed
+		  event.preventDefault();
+		  // Number 13 is the "Enter" key on the keyboard
+		  if (event.keyCode === 13) {
+		    // Trigger the button element with a click
+		    $("#btn2").click();
+			}
+		});
+
+				//This allows the Enter key to be used to click buttton
+		var input = $("#password3");
+
+		input.on("keyup", function(event) {
+		  // Cancel the default action, if needed
+		  event.preventDefault();
+		  // Number 13 is the "Enter" key on the keyboard
+		  if (event.keyCode === 13) {
+		    // Trigger the button element with a click
+		    $("#btn3").click();
+			}
+		});
 
 		});
 	</script>
+
 </body>
 </html>
