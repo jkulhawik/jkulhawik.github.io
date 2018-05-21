@@ -210,14 +210,16 @@
 				$("p.original2").hide();
 				$("p.response2").fadeIn();
 				$("p.response2").html(answers.repeat);
-				$(".inputarea").addClass("shake");
+				$("#inputarea2").removeClass('shake');
+					setTimeout(function(){ $("#inputarea2").addClass("shake"); }, 250);
 			}
 
 			if(textEntered2 == "" || textEntered2 == "nothing"){
 				$("p.original2").hide();
 				$("p.response2").fadeIn();
 				$("p.response2").html(answers.blank);
-				$(".inputarea").addClass("shake");
+				$("#inputarea2").removeClass('shake');
+					setTimeout(function(){ $("#inputarea2").addClass("shake"); }, 250);
 			}
 
 			var correct = false;
@@ -236,7 +238,8 @@
 				$("p.original2").hide();
 				$("p.response2").fadeIn();
 				$("p.response2").html(answers.wrong + " " + textEntered2 + ".");
-				$(".inputarea").addClass("shake");
+				$("#inputarea2").removeClass('shake');
+					setTimeout(function(){ $("#inputarea2").addClass("shake"); }, 250);
 			}
 
 			
@@ -262,7 +265,8 @@
 				$("p.original3").hide();
 				$("p.response3").fadeIn();
 				$("p.response3").html(answers.blank);
-				$(".inputarea").addClass("shake");
+				$("#inputarea3").removeClass('shake');
+					setTimeout(function(){ $("#inputarea3").addClass("shake"); }, 250);
 			}
 
 			var correct = false;
@@ -281,7 +285,8 @@
 				$("p.original3").hide();
 				$("p.response3").fadeIn();
 				$("p.response3").html(answers.wrong + " " + textEntered3 + ".");
-				$(".inputarea").addClass("shake");
+				$("#inputarea3").removeClass('shake');
+					setTimeout(function(){ $("#inputarea3").addClass("shake"); }, 250);
 			}
 
 			
